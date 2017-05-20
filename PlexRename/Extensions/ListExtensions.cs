@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlexRename.Extensions
+namespace PlexRename.BL.Extensions
 {
     public static class ListExtensions
     {

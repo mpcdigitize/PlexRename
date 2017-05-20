@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PlexRename;
 using System.IO;
 
-namespace PlexRename.Extensions
+namespace PlexRename.BL.Extensions
 {
     public static class StringExtensions
     {

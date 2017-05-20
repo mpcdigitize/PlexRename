@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlexRename", "PlexRename\PlexRename.csproj", "{DE8D2F27-0C9F-49A1-BFB8-BE5834852F23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlexRename.BL", "PlexRename\PlexRename.BL.csproj", "{DE8D2F27-0C9F-49A1-BFB8-BE5834852F23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlexRename.Win", "PlexRename.Win\PlexRename.Win.csproj", "{9126B5AD-4935-4FEE-A422-223E671FDCBE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DE8D2F27-0C9F-49A1-BFB8-BE5834852F23} = {DE8D2F27-0C9F-49A1-BFB8-BE5834852F23}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{DE8D2F27-0C9F-49A1-BFB8-BE5834852F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE8D2F27-0C9F-49A1-BFB8-BE5834852F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE8D2F27-0C9F-49A1-BFB8-BE5834852F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9126B5AD-4935-4FEE-A422-223E671FDCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9126B5AD-4935-4FEE-A422-223E671FDCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9126B5AD-4935-4FEE-A422-223E671FDCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9126B5AD-4935-4FEE-A422-223E671FDCBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

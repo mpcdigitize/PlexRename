@@ -1,11 +1,11 @@
-﻿using PlexRename.Extensions;
+﻿using PlexRename.BL.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlexRename
+namespace PlexRename.BL
 {
     public class Facade
     {

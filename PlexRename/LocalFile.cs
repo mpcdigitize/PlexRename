@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PlexRename.Extensions;
+using PlexRename.BL.Extensions;
 
-namespace PlexRename
+namespace PlexRename.BL
 {
     /// <summary>
     /// Keeps information extracted from a file path

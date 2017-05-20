@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PlexRename.Extensions;
+using PlexRename.BL.Extensions;
 
-namespace PlexRename
+namespace PlexRename.BL
 {
     public class Repository
     {
@@ -17,7 +17,7 @@ namespace PlexRename
 
 
         /// <summary>
-        /// Gets string file paths 
+        /// Gets string file path 
         /// </summary>
         /// <param name="path"></param>
         /// <param name="searchPattern"></param>
