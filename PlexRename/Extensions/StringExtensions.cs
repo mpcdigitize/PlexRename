@@ -57,5 +57,17 @@ namespace PlexRename.BL.Extensions
         }
 
 
+        public static string GetSeriesPath(this string filePath)
+        {
+
+
+            return Path.GetFullPath(
+                    Path.GetDirectoryName(
+                    Path.GetDirectoryName(filePath)));
+
+        }
+
+
+
     }
 }

@@ -19,6 +19,16 @@ namespace PlexRename.BL.Extensions
 
         }
 
+        public static IEnumerable<string> PathExclude(this IEnumerable<string> list, string value)
+        {
+
+            return list.Where(p => !p.Contains(value)).Select(p => p);
+
+
+
+        }
+
+
 
         public static IEnumerable<string> GetFilesWithIndex(this IEnumerable<string> list, Dictionary<string, IndexItem> dict)
         {
@@ -49,7 +59,8 @@ namespace PlexRename.BL.Extensions
                     FilePath = filePath,
                     Key = _key,
                     SeriesName = filePath.GetSeriesNameFromFilePath(),
-                    FileNameWithoutIndex = fileName.Replace(_key, "").Trim()
+                    FileNameWithoutIndex = fileName.Replace(_key, "").Trim(),
+                    SeriesPath = filePath.GetSeriesPath()
                 });
 
 
@@ -87,12 +98,32 @@ namespace PlexRename.BL.Extensions
         public static IEnumerable<KeyValuePair<string, string>> FilesToProcess(this IEnumerable<MediaItem> mediaItems)
         {
             return mediaItems.Select(m => new KeyValuePair<string, string>
-                                        (m.FilePath, m.SeriesName + " - S" +
+                                        (m.FilePath,m.SeriesPath + @"\Season " + m.SeasonNumber + @"\" + m.SeriesName + " - S" +
                                                m.SeasonNumber + "E" +
                                                m.EpisodeNumber + " - " +
                                                m.FileNameWithoutIndex));
 
         }
+
+
+
+
+        //public static IEnumerable<string> PreviewChanges(this IEnumerable<string> files, Dictionary<string, IndexItem> dict)
+        //{
+        //   // var repository = new Repository();
+        //    //var files = repository.ScanFolder(@"" + path, "*");
+        //    //var listOfPaths = files.PathContains(@"\Season").PathExclude(@"\metadata\").GetFilesWithIndex(dict);
+
+        //    var listFiles = files.GetIndexFromFile();
+        //    var localFiles = new LocalFiles(listFiles);
+
+        //    var listOfMediaItem = localFiles.PopulateMediaItem(dict);
+
+        //    //var r2 = res.Preview ();
+        //    var result = listOfMediaItem.FilesToProcess().Preview();
+
+        //    return result;
+        //}
 
 
 

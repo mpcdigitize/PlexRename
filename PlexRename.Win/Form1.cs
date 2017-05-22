@@ -14,8 +14,11 @@ namespace PlexRename.Win
 {
     public partial class Form1 : Form
     {
+        Dictionary<string, IndexItem> dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
+
         public Form1()
         {
+            
             InitializeComponent();
         }
 
@@ -23,15 +26,15 @@ namespace PlexRename.Win
         {
             string path = @"\\TOWER\Media\Video\TV\Colony";
 
-
+       
 
 
             var repository = new Repository();
             var files = repository.ScanFolder(path, "*");
 
             //  var tt = path.ContainsEpisodeIndex();
-            var dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
-            var facade = new Facade();
+           
+            
             var list = files.PathContains(@"\Season").GetFilesWithIndex(dict);
            var list2 = list.GetIndexFromFile();
 
@@ -43,7 +46,7 @@ namespace PlexRename.Win
             var r3 = res.FilesToProcess().Preview();
             res.FilesToProcess().RenameFiles();
 
-            FileList.DataSource = list.ToList();
+           // fileList.DataSource = list.ToList();
            
            
             //foreach (var file in r3)
@@ -59,7 +62,24 @@ namespace PlexRename.Win
 
         private void Preview_Click(object sender, EventArgs e)
         {
-            PreviewList.DataSource = r3.ToList();
+            var facade = new Facade();
+            var result = facade.PreviewChanges(inputPath.Text, dict);
+            previewList.DataSource = result.ToList();
+        }
+
+        private void selectFolder_Click(object sender, EventArgs e)
+        {
+             var facade = new Facade();
+     
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                inputPath.Text = folderBrowserDialog1.SelectedPath;
+            }
+        
+            var result = facade.GetFilePaths(inputPath.Text, dict);
+            fileList.DataSource = result.ToList(); 
+             
+
         }
     }
 }

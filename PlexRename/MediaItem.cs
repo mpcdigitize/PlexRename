@@ -20,6 +20,7 @@ namespace PlexRename.BL
         public string SeasonNumber { get; set; }
         public string FileNameWithoutIndex { get; set; }
         public string ParentPath { get; set; }
+        public string SeriesPath { get; set; }
 
 
 

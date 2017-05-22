@@ -28,77 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.FileList = new System.Windows.Forms.ListBox();
-            this.PreviewList = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.SelectFolder = new System.Windows.Forms.Button();
-            this.Save = new System.Windows.Forms.Button();
-            this.Preview = new System.Windows.Forms.Button();
+            this.fileList = new System.Windows.Forms.ListBox();
+            this.previewList = new System.Windows.Forms.ListBox();
+            this.inputPath = new System.Windows.Forms.TextBox();
+            this.selectFolder = new System.Windows.Forms.Button();
+            this.saveChanges = new System.Windows.Forms.Button();
+            this.previewChanges = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
-            // FileList
+            // fileList
             // 
-            this.FileList.FormattingEnabled = true;
-            this.FileList.Location = new System.Drawing.Point(70, 89);
-            this.FileList.Name = "FileList";
-            this.FileList.Size = new System.Drawing.Size(624, 329);
-            this.FileList.TabIndex = 0;
+            this.fileList.FormattingEnabled = true;
+            this.fileList.Location = new System.Drawing.Point(70, 89);
+            this.fileList.Name = "fileList";
+            this.fileList.Size = new System.Drawing.Size(959, 199);
+            this.fileList.TabIndex = 0;
             // 
-            // PreviewList
+            // previewList
             // 
-            this.PreviewList.FormattingEnabled = true;
-            this.PreviewList.Location = new System.Drawing.Point(732, 89);
-            this.PreviewList.Name = "PreviewList";
-            this.PreviewList.Size = new System.Drawing.Size(297, 329);
-            this.PreviewList.TabIndex = 1;
+            this.previewList.FormattingEnabled = true;
+            this.previewList.Location = new System.Drawing.Point(70, 359);
+            this.previewList.Name = "previewList";
+            this.previewList.Size = new System.Drawing.Size(959, 199);
+            this.previewList.TabIndex = 1;
             // 
-            // textBox1
+            // inputPath
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(859, 20);
-            this.textBox1.TabIndex = 2;
+            this.inputPath.Location = new System.Drawing.Point(70, 29);
+            this.inputPath.Name = "inputPath";
+            this.inputPath.Size = new System.Drawing.Size(859, 20);
+            this.inputPath.TabIndex = 2;
             // 
-            // SelectFolder
+            // selectFolder
             // 
-            this.SelectFolder.Location = new System.Drawing.Point(954, 29);
-            this.SelectFolder.Name = "SelectFolder";
-            this.SelectFolder.Size = new System.Drawing.Size(75, 23);
-            this.SelectFolder.TabIndex = 3;
-            this.SelectFolder.Text = "Select";
-            this.SelectFolder.UseVisualStyleBackColor = true;
+            this.selectFolder.Location = new System.Drawing.Point(954, 29);
+            this.selectFolder.Name = "selectFolder";
+            this.selectFolder.Size = new System.Drawing.Size(75, 23);
+            this.selectFolder.TabIndex = 3;
+            this.selectFolder.Text = "Select";
+            this.selectFolder.UseVisualStyleBackColor = true;
+            this.selectFolder.Click += new System.EventHandler(this.selectFolder_Click);
             // 
-            // Save
+            // saveChanges
             // 
-            this.Save.Location = new System.Drawing.Point(856, 439);
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(75, 23);
-            this.Save.TabIndex = 5;
-            this.Save.Text = "Save";
-            this.Save.UseVisualStyleBackColor = true;
+            this.saveChanges.Location = new System.Drawing.Point(484, 581);
+            this.saveChanges.Name = "saveChanges";
+            this.saveChanges.Size = new System.Drawing.Size(75, 23);
+            this.saveChanges.TabIndex = 5;
+            this.saveChanges.Text = "Save";
+            this.saveChanges.UseVisualStyleBackColor = true;
             // 
-            // Preview
+            // previewChanges
             // 
-            this.Preview.Location = new System.Drawing.Point(312, 439);
-            this.Preview.Name = "Preview";
-            this.Preview.Size = new System.Drawing.Size(75, 23);
-            this.Preview.TabIndex = 6;
-            this.Preview.Text = "Preview";
-            this.Preview.UseVisualStyleBackColor = true;
-            this.Preview.Click += new System.EventHandler(this.Preview_Click);
+            this.previewChanges.Location = new System.Drawing.Point(484, 308);
+            this.previewChanges.Name = "previewChanges";
+            this.previewChanges.Size = new System.Drawing.Size(75, 23);
+            this.previewChanges.TabIndex = 6;
+            this.previewChanges.Text = "Preview";
+            this.previewChanges.UseVisualStyleBackColor = true;
+            this.previewChanges.Click += new System.EventHandler(this.Preview_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1080, 486);
-            this.Controls.Add(this.Preview);
-            this.Controls.Add(this.Save);
-            this.Controls.Add(this.SelectFolder);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.PreviewList);
-            this.Controls.Add(this.FileList);
+            this.ClientSize = new System.Drawing.Size(1067, 616);
+            this.Controls.Add(this.previewChanges);
+            this.Controls.Add(this.saveChanges);
+            this.Controls.Add(this.selectFolder);
+            this.Controls.Add(this.inputPath);
+            this.Controls.Add(this.previewList);
+            this.Controls.Add(this.fileList);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -108,13 +111,14 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox FileList;
-        private System.Windows.Forms.ListBox PreviewList;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button SelectFolder;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button Save;
-        private System.Windows.Forms.Button Preview;
+        private System.Windows.Forms.ListBox fileList;
+        private System.Windows.Forms.ListBox previewList;
+        private System.Windows.Forms.TextBox inputPath;
+        private System.Windows.Forms.Button selectFolder;
+      //  private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button saveChanges;
+        private System.Windows.Forms.Button previewChanges;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

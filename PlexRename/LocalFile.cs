@@ -17,6 +17,7 @@ namespace PlexRename.BL
         public string SeriesName { get; set; }
         public string FileNameWithoutIndex { get; set; }
         public string ParentFolder { get; set; }
+        public string SeriesPath { get; set; }
 
 
 

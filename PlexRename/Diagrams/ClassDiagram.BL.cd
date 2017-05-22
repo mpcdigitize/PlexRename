@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PlexRename.BL.LocalFiles">
+    <Position X="5.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>LocalFiles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.Facade">
+    <Position X="5.5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Facade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.Extensions.ListExtensions">
+    <Position X="8" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAAAAAAAAEAQAAAAAAAEAAAQAAQAAAAA=</HashCode>
+      <FileName>Extensions\ListExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.Extensions.StringExtensions">
+    <Position X="8" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAQAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Extensions\StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.IndexDictionary">
+    <Position X="3" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAICAAAAAAAAAAIAAAAAQAAAAAAIAAAAAAQAAAAAAA=</HashCode>
+      <FileName>IndexDictionary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.IndexItem">
+    <Position X="3" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>IndexItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.LocalFile">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAAAAQAAAAAAAAAAAAAAQAAAABACAAAAAA=</HashCode>
+      <FileName>LocalFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.MediaItem">
+    <Position X="0.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAACAAAAAAAAAABAAAQAAAAFASANAgAA=</HashCode>
+      <FileName>MediaItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlexRename.BL.Repository">
+    <Position X="5.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAQ=</HashCode>
+      <FileName>Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -32,6 +32,7 @@ namespace PlexRename.BL
                                              SeasonNumber = d.Value.SeasonNumber,
                                              FileNameWithoutIndex = l.FileNameWithoutIndex,
                                              SeriesName = l.SeriesName,
+                                             SeriesPath = l.SeriesPath
 
                                          });
 
