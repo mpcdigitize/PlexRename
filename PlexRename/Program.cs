@@ -14,31 +14,38 @@ namespace PlexRename.BL
         static void Main(string[] args)
         {
 
-            string path =@"\\TOWER\Media\Video\TV\The Amazing Race";
-
+            string path =@"\\TOWER\Media\Video\TV\Colony";
+            var dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
 
 
 
             var repository = new Repository();
-            var files = repository.ScanFolder(path, "*");
+            var files = repository.GetFiles(path, "*")
+                        .PathIncludes(@"\Season")
+                        .PathExclude(@"\metadata")
+                        .PathContainsIndex(dict)
+                        .WithNewIndexPattern();
+
+            //files.WithNewIndexPattern();
+                     
 
 
-            var dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
+           
            // var facade = new Facade();
-            var list = files.PathContains(@"\Season").PathExclude(@"\metadata\").GetFilesWithIndex(dict);
-            var list2 = list.GetIndexFromFile();
+        //    var list = files.PathContains(@"\Season").PathExclude(@"\metadata\").GetFilesWithIndex(dict);
+        //    var list2 = list.GetIndexFromFile();
 
-            var localFiles = new LocalFiles(list2);
+        //    var localFiles = new LocalFiles(list2);
 
-            var res = localFiles.PopulateMediaItem(dict);
+        //    var res = localFiles.PopulateMediaItem(dict);
 
-            var r3 = res.FilesToProcess().Preview();
-        //    res.FilesToProcess().RenameFiles();
+        //    var r3 = res.FilesToProcess().Preview();
+        ////    res.FilesToProcess().RenameFiles();
 
-            foreach (var file in r3)
+            foreach (var file in files)
             {
 
-                Console.WriteLine(file);
+                Console.WriteLine(file.Value);
 
 
             }

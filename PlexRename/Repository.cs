@@ -22,7 +22,7 @@ namespace PlexRename.BL
         /// <param name="path"></param>
         /// <param name="searchPattern"></param>
         /// <returns></returns>
-        public IEnumerable<string> ScanFolder(string path, string searchPattern)
+        public IEnumerable<string> GetFiles(string path, string searchPattern)
         {
    
             List<string> files = new List<string>();

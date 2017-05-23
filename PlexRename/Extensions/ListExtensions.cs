@@ -10,64 +10,97 @@ namespace PlexRename.BL.Extensions
     public static class ListExtensions
     {
 
-        public static IEnumerable<string> PathContains(this IEnumerable<string> list, string value)
+        public static IEnumerable<MediaItem> PathContainsIndex(this IEnumerable<string> files, Dictionary<string, IndexItem> dict)
         {
+            var list = new List<MediaItem>();
 
-            return list.Where(p => p.Contains(value)).Select(p => p);
-
-
-
-        }
-
-        public static IEnumerable<string> PathExclude(this IEnumerable<string> list, string value)
-        {
-
-            return list.Where(p => !p.Contains(value)).Select(p => p);
-
-
-
-        }
-
-
-
-        public static IEnumerable<string> GetFilesWithIndex(this IEnumerable<string> list, Dictionary<string, IndexItem> dict)
-        {
-
-            return list.Where(p => p.PathContainsIndex(dict));
-
-
-        }
-
-
-        public static IEnumerable<LocalFile> GetIndexFromFile(this IEnumerable<string> list)
-        {
-
-            var fileList = new List<LocalFile>();
-
-            foreach (var item in list)
+            foreach (var key in dict.Keys)
             {
 
-                var file = new FileInfo(item);
-                var fileName = file.Name;
-                var filePath = file.FullName;
 
-                int pos = fileName.IndexOf(" ");
-                string _key = fileName.Substring(0, pos).Trim();
+                var mediaItem = files.Where(f => f.Contains(key))
+                                .Select(f => new MediaItem()
+                                {
 
-                fileList.Add(new LocalFile()
-                {
-                    FilePath = filePath,
-                    Key = _key,
-                    SeriesName = filePath.GetSeriesNameFromFilePath(),
-                    FileNameWithoutIndex = fileName.Replace(_key, "").Trim(),
-                    SeriesPath = filePath.GetSeriesPath()
-                });
 
+                                    FilePath = f,
+                                    SeasonNumber = dict[key].SeasonNumber,
+                                    EpisodeNumber = dict[key].EpisodeNumber,
+                                    SeriesName = f.GetSeriesNameFromFilePath(),
+                                    FileNameWithoutIndex = f.GetFileName(key),
+                                    SeriesPath = f.GetSeriesPath()
+
+                                })
+                                .FirstOrDefault();
+
+           
+                list.Add(mediaItem);
 
             }
 
-            return fileList;
+            list.RemoveAll(f => f == null);
+
+            return list;
+
         }
+
+        public static IEnumerable<string> PathIncludes(this IEnumerable<string> files, string name)
+        {
+
+            return files.Where(p => p.Contains(name));
+
+
+        }
+
+        public static IEnumerable<string> PathExclude(this IEnumerable<string> files, string name)
+        {
+
+            return files.Where(p => !p.Contains(name));
+
+
+        }
+
+       
+
+
+        //public static IEnumerable<string> GetFilesWithIndex(this IEnumerable<string> list, Dictionary<string, IndexItem> dict)
+        //{
+
+        //    return list.Where(p => p.PathContainsIndex(dict));
+
+
+        //}
+
+
+        //public static IEnumerable<LocalFile> GetIndexFromFile(this IEnumerable<string> list)
+        //{
+
+        //    var fileList = new List<LocalFile>();
+
+        //    foreach (var item in list)
+        //    {
+
+        //        var file = new FileInfo(item);
+        //        var fileName = file.Name;
+        //        var filePath = file.FullName;
+
+        //        int pos = fileName.IndexOf(" ");
+        //        string _key = fileName.Substring(0, pos).Trim();
+
+        //        fileList.Add(new LocalFile()
+        //        {
+        //            FilePath = filePath,
+        //            Key = _key,
+        //            SeriesName = filePath.GetSeriesNameFromFilePath(),
+        //            FileNameWithoutIndex = fileName.Replace(_key, "").Trim(),
+        //            SeriesPath = filePath.GetSeriesPath()
+        //        });
+
+
+        //    }
+
+        //    return fileList;
+        //}
 
 
 
@@ -95,7 +128,7 @@ namespace PlexRename.BL.Extensions
         }
 
 
-        public static IEnumerable<KeyValuePair<string, string>> FilesToProcess(this IEnumerable<MediaItem> mediaItems)
+        public static IEnumerable<KeyValuePair<string, string>> WithNewIndexPattern(this IEnumerable<MediaItem> mediaItems)
         {
             return mediaItems.Select(m => new KeyValuePair<string, string>
                                         (m.FilePath,m.SeriesPath + @"\Season " + m.SeasonNumber + @"\" + m.SeriesName + " - S" +

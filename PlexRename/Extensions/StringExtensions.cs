@@ -68,6 +68,17 @@ namespace PlexRename.BL.Extensions
         }
 
 
+        public static string GetFileName(this string filePath, string key)
+        {
+            var file = new FileInfo(filePath);
+            var fileName = file.Name.Replace(key, "").Trim();
+
+            return fileName;
+
+
+        }
+
+
 
     }
 }
