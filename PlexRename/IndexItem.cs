@@ -12,8 +12,9 @@ namespace PlexRename.BL
     /// </summary>
     public class IndexItem
     {
+        public string OriginalIndex { get; set; }
         public string SeasonNumber { get; set; }
-        public string EpisodeNumber { get; set; }
+        public string ReplaceWithIndex { get; set; }
 
     }
 }

@@ -28,7 +28,7 @@ namespace PlexRename.BL
                                          (l, d) => new MediaItem()
                                          {
                                              FilePath = l.FilePath,
-                                             EpisodeNumber = d.Value.EpisodeNumber,
+                                            // EpisodeNumber = d.Value.EpisodeNumber,
                                              SeasonNumber = d.Value.SeasonNumber,
                                              FileNameWithoutIndex = l.FileNameWithoutIndex,
                                              SeriesName = l.SeriesName,

@@ -78,7 +78,15 @@ namespace PlexRename.BL.Extensions
 
         }
 
+        public static string Sanitize(this string filePath)
+        {
+            return filePath.Replace("-", "").
+                            Replace("thumb","-thumb");
 
+            
+
+
+        }
 
     }
 }

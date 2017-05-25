@@ -15,37 +15,57 @@ namespace PlexRename.BL
         {
 
             string path =@"\\TOWER\Media\Video\TV\Colony";
-            var dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
+            var indexList = new IndexList().GenerateIndexList(2000, 2016, 0, 50);
+
+            var repository = new Repository().GetFiles(path,"*");
+            
+            var renamer = new Renamer(repository);
+
+            var files = renamer.PreviewChanges(indexList);
+
+            var caretaker = new MementoCaretaker();
+            caretaker.Memento = renamer.SaveMemento();
+            var result = renamer.RestoreMemento(caretaker.Memento);
 
 
-
-            var repository = new Repository();
-            var files = repository.GetFiles(path, "*")
-                        .PathIncludes(@"\Season")
-                        .PathExclude(@"\metadata")
-                        .PathContainsIndex(dict)
-                        .WithNewIndexPattern();
+            var allfiles = renamer.DisplayPaths();
 
             //files.WithNewIndexPattern();
-                     
 
 
-           
-           // var facade = new Facade();
-        //    var list = files.PathContains(@"\Season").PathExclude(@"\metadata\").GetFilesWithIndex(dict);
-        //    var list2 = list.GetIndexFromFile();
 
-        //    var localFiles = new LocalFiles(list2);
 
-        //    var res = localFiles.PopulateMediaItem(dict);
+            // var facade = new Facade();
+            //    var list = files.PathContains(@"\Season").PathExclude(@"\metadata\").GetFilesWithIndex(dict);
+            //    var list2 = list.GetIndexFromFile();
 
-        //    var r3 = res.FilesToProcess().Preview();
-        ////    res.FilesToProcess().RenameFiles();
+            //    var localFiles = new LocalFiles(list2);
+
+            //    var res = localFiles.PopulateMediaItem(dict);
+
+            //    var r3 = res.FilesToProcess().Preview();
+            ////    res.FilesToProcess().RenameFiles();
 
             foreach (var file in files)
             {
 
                 Console.WriteLine(file.Value);
+
+
+            }
+
+            foreach (var file in result)
+            {
+
+                Console.WriteLine(file.Value);
+
+
+            }
+
+            foreach (var file in allfiles)
+            {
+
+                Console.WriteLine(file);
 
 
             }

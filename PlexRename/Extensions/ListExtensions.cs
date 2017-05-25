@@ -10,24 +10,24 @@ namespace PlexRename.BL.Extensions
     public static class ListExtensions
     {
 
-        public static IEnumerable<MediaItem> PathContainsIndex(this IEnumerable<string> files, Dictionary<string, IndexItem> dict)
+        public static IEnumerable<MediaItem> PathContainsIndex(this IEnumerable<string> files, List<IndexItem> indexList)
         {
             var list = new List<MediaItem>();
 
-            foreach (var key in dict.Keys)
+            foreach (var item in indexList)
             {
 
 
-                var mediaItem = files.Where(f => f.Contains(key))
+                var mediaItem = files.Where(f => f.Contains(item.OriginalIndex))
                                 .Select(f => new MediaItem()
                                 {
 
 
                                     FilePath = f,
-                                    SeasonNumber = dict[key].SeasonNumber,
-                                    EpisodeNumber = dict[key].EpisodeNumber,
+                                    SeasonNumber = item.SeasonNumber, 
+                                    ReplaceWithIndex = item.ReplaceWithIndex,
                                     SeriesName = f.GetSeriesNameFromFilePath(),
-                                    FileNameWithoutIndex = f.GetFileName(key),
+                                    FileNameWithoutIndex = f.GetFileName(item.OriginalIndex),
                                     SeriesPath = f.GetSeriesPath()
 
                                 })
@@ -44,7 +44,7 @@ namespace PlexRename.BL.Extensions
 
         }
 
-        public static IEnumerable<string> PathIncludes(this IEnumerable<string> files, string name)
+        public static IEnumerable<string> PathIncludes(this List<string> files, string name)
         {
 
             return files.Where(p => p.Contains(name));
@@ -131,10 +131,9 @@ namespace PlexRename.BL.Extensions
         public static IEnumerable<KeyValuePair<string, string>> WithNewIndexPattern(this IEnumerable<MediaItem> mediaItems)
         {
             return mediaItems.Select(m => new KeyValuePair<string, string>
-                                        (m.FilePath,m.SeriesPath + @"\Season " + m.SeasonNumber + @"\" + m.SeriesName + " - S" +
-                                               m.SeasonNumber + "E" +
-                                               m.EpisodeNumber + " - " +
-                                               m.FileNameWithoutIndex));
+                                        (m.FilePath,m.SeriesPath + @"\Season " + m.SeasonNumber + @"\" + m.SeriesName + " - " +
+                                               m.ReplaceWithIndex + " - " +
+                                               m.FileNameWithoutIndex.Sanitize().Trim()));
 
         }
 
