@@ -11,8 +11,8 @@ namespace PlexRename.BL
 {
     public class Repository
     {
-        private List<FileInfo> filess = new List<FileInfo>();
-        private List<DirectoryInfo> folders = new List<DirectoryInfo>();
+        private List<string> _files; 
+      //  private static List<DirectoryInfo> folders = new List<DirectoryInfo>();
 
 
 
@@ -25,12 +25,12 @@ namespace PlexRename.BL
         public IEnumerable<string> GetFiles(string path, string searchPattern)
         {
    
-            List<string> files = new List<string>();
+            this._files = new List<string>();
 
 
             try
             {
-                files =  Directory.GetFiles(path, "*", SearchOption.AllDirectories).ToList();
+                _files =  Directory.GetFiles(path, "*", SearchOption.AllDirectories).ToList();
 
         
             }
@@ -40,11 +40,18 @@ namespace PlexRename.BL
                 Console.WriteLine("An error occurred: '{0}'", e.Message);
             }
 
-            return files;
+            return _files;
            
 
             }
 
+
+
+        public IEnumerable<string> Display()
+        {
+
+            return this._files;
+        }
 
 
 

@@ -6,24 +6,19 @@ using System.Threading.Tasks;
 
 namespace PlexRename.BL
 {
-    public class IndexList
+    public static class IndexList
     {
 
-        private List<IndexItem> indexList { get; set; }
+
+        public static List<IndexItem> Indexes = new List<IndexItem>();
 
 
+        
 
-        public IndexList()
-        {
-            indexList = new List<IndexItem>();
-
-        }
-
-
-        public void Display()
+        public static void Display()
         {
 
-            foreach (var item in indexList)
+            foreach (var item in Indexes)
             {
                 Console.WriteLine("{0} {1} {2} {3}",
                     item.OriginalIndex,
@@ -47,20 +42,20 @@ namespace PlexRename.BL
         */
 
 
-        public List<IndexItem> GenerateIndexList(int startYear, int endYear, int startInteger, int endInteger)
+        public static List<IndexItem> GenerateIndexList(int startYear, int endYear, int startInteger, int endInteger)
         {
 
-            this.GenerateIndexesForIntegers(startInteger, endInteger);
-            this.GenerateIndexesForYears(startYear, endYear, startInteger, endInteger);
+            GenerateIndexesForIntegers(startInteger, endInteger);
+            GenerateIndexesForYears(startYear, endYear, startInteger, endInteger);
 
 
-            return indexList;
+            return Indexes;
         }
 
 
 
 
-        private void GenerateIndexesForIntegers(int startInteger, int endInteger)
+        private static void GenerateIndexesForIntegers(int startInteger, int endInteger)
         {
 
             for (int x = startInteger; x < endInteger; x++)
@@ -73,7 +68,7 @@ namespace PlexRename.BL
                     indexItem.OriginalIndex = y.ToString("D2") + "x" + x.ToString("D2");
                     indexItem.ReplaceWithIndex = "S" + y.ToString("D2") + "E" + x.ToString("D2");
 
-                    indexList.Add(indexItem);
+                    Indexes.Add(indexItem);
                 }
 
 
@@ -87,7 +82,7 @@ namespace PlexRename.BL
 
 
 
-        private void GenerateIndexesForYears(int startYear, int endYear, int startInteger, int endInteger)
+        private static void GenerateIndexesForYears(int startYear, int endYear, int startInteger, int endInteger)
         {
 
             for (int x = startInteger; x < endInteger; x++)
@@ -100,7 +95,7 @@ namespace PlexRename.BL
                     indexItem.OriginalIndex = y.ToString("D2") + "x" + x.ToString("D2");
                     indexItem.ReplaceWithIndex = "S" + y.ToString("D2") + "E" + x.ToString("D2");
 
-                    indexList.Add(indexItem);
+                    Indexes.Add(indexItem);
                 }
 
 
@@ -110,6 +105,15 @@ namespace PlexRename.BL
 
 
         }
+
+        public static List<IndexItem> GetList()
+        {
+            return Indexes;
+
+        }
+
+
+        
 
     }
 }

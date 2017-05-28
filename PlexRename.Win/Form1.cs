@@ -14,7 +14,7 @@ namespace PlexRename.Win
 {
     public partial class Form1 : Form
     {
-        Dictionary<string, IndexItem> dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
+      //  Dictionary<string, IndexItem> dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
 
         public Form1()
         {
@@ -24,31 +24,31 @@ namespace PlexRename.Win
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           // string path = @"\\TOWER\Media\Video\TV\Colony";
+            // string path = @"\\TOWER\Media\Video\TV\Colony";
+            IndexList.GenerateIndexList(0, 0, 0, 50);
 
-       
 
 
-           // var repository = new Repository();
-           // var files = repository.ScanFolder(path, "*");
+            // var repository = new Repository();
+            // var files = repository.ScanFolder(path, "*");
 
-           // //  var tt = path.ContainsEpisodeIndex();
-           
-            
-           // var list = files.PathContains(@"\Season").GetFilesWithIndex(dict);
-           //var list2 = list.GetIndexFromFile();
+            // //  var tt = path.ContainsEpisodeIndex();
 
-           // var localFiles = new LocalFiles(list2);
 
-           // var res = localFiles.PopulateMediaItem(dict);
+            // var list = files.PathContains(@"\Season").GetFilesWithIndex(dict);
+            //var list2 = list.GetIndexFromFile();
 
-           // //var r2 = res.Preview ();
-           // var r3 = res.FilesToProcess().Preview();
-           // res.FilesToProcess().RenameFiles();
+            // var localFiles = new LocalFiles(list2);
 
-           // fileList.DataSource = list.ToList();
-           
-           
+            // var res = localFiles.PopulateMediaItem(dict);
+
+            // //var r2 = res.Preview ();
+            // var r3 = res.FilesToProcess().Preview();
+            // res.FilesToProcess().RenameFiles();
+
+            // fileList.DataSource = list.ToList();
+
+
             //foreach (var file in r3)
             //{
 
@@ -62,13 +62,14 @@ namespace PlexRename.Win
 
         private void Preview_Click(object sender, EventArgs e)
         {
-            var repository = new Repository();
-            var files = repository.GetFiles(inputPath.Text, "*")
-                        .PathIncludes(@"\Season")
-                        .PathExclude(@"\metadata")
-                        .PathContainsIndex(dict)
-                        .WithNewIndexPattern();
 
+            var indexList = IndexList.GetList();
+          //  var repository = new Repository().GetFiles(inputPath.Text, "*");
+
+            var renamer = new Renamer(LocalFiles.LocalFileList);
+
+            //  var files = renamer.PreviewChanges(indexList);
+            var files = renamer.PreviewChanges(indexList);
 
             previewList.DisplayMember = "Value";
             previewList.DataSource = files.ToList();
@@ -76,22 +77,27 @@ namespace PlexRename.Win
 
         private void selectFolder_Click(object sender, EventArgs e)
         {
-             //var facade = new Facade();
-     
+            //var facade = new Facade();
+
+           
+
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 inputPath.Text = folderBrowserDialog1.SelectedPath;
             }
-        
+
             //var result = facade.GetFilePaths(inputPath.Text, dict);
-           // fileList.DataSource = result.ToList();
+            // fileList.DataSource = result.ToList();
 
 
-            var repository = new Repository();
-            var files = repository.GetFiles(inputPath.Text, "*")
-                        .PathIncludes(@"\Season")
-                        .PathExclude(@"\metadata")
-                        .PathContainsIndex(dict);
+            var repository = new Repository().GetFiles(inputPath.Text, "*");
+            LocalFiles.LocalFileList = repository;
+            var files = LocalFiles.LocalFileList;
+
+         //  var renamer = new Renamer(repository);
+
+          //  var files = renamer.PreviewChanges(indexList);
+           // var files = repository.Display();
             // .WithNewIndexPattern();
 
 

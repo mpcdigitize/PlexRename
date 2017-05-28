@@ -10,21 +10,47 @@ namespace PlexRename.BL.Extensions
     public static class ListExtensions
     {
 
+        public static IEnumerable<MediaItem> SortByPath(this IEnumerable<MediaItem> mediaItems)
+        {
+            return mediaItems.OrderBy(p => p.FilePath);
+
+        }
+
+
+        public static IEnumerable<string> GetExtensions(this IEnumerable<string> paths)
+        {
+            return paths.Select(p => Path.GetExtension(p));
+        }
+
+
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
+        {
+            return new HashSet<T>(source);
+        }
+
         public static IEnumerable<MediaItem> PathContainsIndex(this IEnumerable<string> files, List<IndexItem> indexList)
         {
             var list = new List<MediaItem>();
+
+            var extensions = files.GetExtensions().ToHashSet();
+
+
+            foreach (var ext in extensions)
+            {
+
+
 
             foreach (var item in indexList)
             {
 
 
-                var mediaItem = files.Where(f => f.Contains(item.OriginalIndex))
+                var mediaItem = files.Where(f => f.Contains(item.OriginalIndex) && f.Contains(ext))
                                 .Select(f => new MediaItem()
                                 {
 
 
                                     FilePath = f,
-                                    SeasonNumber = item.SeasonNumber, 
+                                    SeasonNumber = item.SeasonNumber,
                                     ReplaceWithIndex = item.ReplaceWithIndex,
                                     SeriesName = f.GetSeriesNameFromFilePath(),
                                     FileNameWithoutIndex = f.GetFileName(item.OriginalIndex),
@@ -33,14 +59,16 @@ namespace PlexRename.BL.Extensions
                                 })
                                 .FirstOrDefault();
 
-           
+
                 list.Add(mediaItem);
 
             }
 
+        }
+
             list.RemoveAll(f => f == null);
 
-            return list;
+            return list.SortByPath();
 
         }
 

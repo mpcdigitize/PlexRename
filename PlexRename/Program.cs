@@ -15,7 +15,7 @@ namespace PlexRename.BL
         {
 
             string path =@"\\TOWER\Media\Video\TV\Colony";
-            var indexList = new IndexList().GenerateIndexList(2000, 2016, 0, 50);
+            var indexList =  IndexList.GenerateIndexList(0, 0, 0, 50);
 
             var repository = new Repository().GetFiles(path,"*");
             
