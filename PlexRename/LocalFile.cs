@@ -12,12 +12,12 @@ namespace PlexRename.BL
     /// </summary>
     public class LocalFile
     {
-        public string FilePath { get; set; }
-        public string Key { get; set; }
-        public string SeriesName { get; set; }
-        public string FileNameWithoutIndex { get; set; }
-        public string ParentFolder { get; set; }
-        public string SeriesPath { get; set; }
+        //public string FilePath { get; set; }
+        //public string Key { get; set; }
+        //public string SeriesName { get; set; }
+        //public string FileNameWithoutIndex { get; set; }
+        //public string ParentFolder { get; set; }
+        //public string SeriesPath { get; set; }
 
 
 

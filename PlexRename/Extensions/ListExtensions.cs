@@ -72,7 +72,7 @@ namespace PlexRename.BL.Extensions
 
         }
 
-        public static IEnumerable<string> PathIncludes(this List<string> files, string name)
+        public static IEnumerable<string> PathIncludes(this IEnumerable<string> files, string name)
         {
 
             return files.Where(p => p.Contains(name));

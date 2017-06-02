@@ -12,7 +12,7 @@ namespace PlexRename.BL
     public class Repository
     {
         private List<string> _files; 
-      //  private static List<DirectoryInfo> folders = new List<DirectoryInfo>();
+ 
 
 
 
@@ -47,13 +47,18 @@ namespace PlexRename.BL
 
 
 
-        public IEnumerable<string> Display()
+        //public IEnumerable<string> Display()
+        //{
+
+        //    return this._files;
+        //}
+
+
+        public IEnumerable<string> GetPathList()
         {
-
             return this._files;
+
         }
-
-
 
 
 

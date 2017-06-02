@@ -15,20 +15,26 @@ namespace PlexRename.BL
         {
 
             string path =@"\\TOWER\Media\Video\TV\Colony";
-            var indexList =  IndexList.GenerateIndexList(0, 0, 0, 50);
 
-            var repository = new Repository().GetFiles(path,"*");
+
+            ApplicationServiceLayer service = new ApplicationServiceLayer();
+
+            var files = service.PopulateList(path);
+
+            //var indexList =  new IndexList().GenerateIndexList(0, 0, 0, 50);
+
+            //var repository = new Repository().GetFiles(path,"*");
             
-            var renamer = new Renamer(repository);
+            //var renamer = new Renamer(repository);
 
-            var files = renamer.PreviewChanges(indexList);
+            //var files = renamer.PreviewChanges(indexList);
 
-            var caretaker = new MementoCaretaker();
-            caretaker.Memento = renamer.SaveMemento();
-            var result = renamer.RestoreMemento(caretaker.Memento);
+            //var caretaker = new MementoCaretaker();
+            //caretaker.Memento = renamer.SaveMemento();
+            //var result = renamer.RestoreMemento(caretaker.Memento);
 
 
-            var allfiles = renamer.DisplayPaths();
+            //var allfiles = renamer.DisplayPaths();
 
             //files.WithNewIndexPattern();
 
@@ -46,29 +52,29 @@ namespace PlexRename.BL
             //    var r3 = res.FilesToProcess().Preview();
             ////    res.FilesToProcess().RenameFiles();
 
-            foreach (var file in files)
-            {
+            //foreach (var file in files)
+            //{
 
-                Console.WriteLine(file.Value);
-
-
-            }
-
-            foreach (var file in result)
-            {
-
-                Console.WriteLine(file.Value);
+            //    Console.WriteLine(file.Value);
 
 
-            }
+            //}
 
-            foreach (var file in allfiles)
-            {
+            //foreach (var file in result)
+            //{
 
-                Console.WriteLine(file);
+            //    Console.WriteLine(file.Value);
 
 
-            }
+            //}
+
+            //foreach (var file in allfiles)
+            //{
+
+            //    Console.WriteLine(file);
+
+
+            //}
 
 
 

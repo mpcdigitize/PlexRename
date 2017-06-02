@@ -25,7 +25,7 @@ namespace PlexRename.Win
         private void Form1_Load(object sender, EventArgs e)
         {
             // string path = @"\\TOWER\Media\Video\TV\Colony";
-            IndexList.GenerateIndexList(0, 0, 0, 50);
+           // IndexList.GenerateIndexList(0, 0, 0, 50);
 
 
 
@@ -63,16 +63,16 @@ namespace PlexRename.Win
         private void Preview_Click(object sender, EventArgs e)
         {
 
-            var indexList = IndexList.GetList();
-          //  var repository = new Repository().GetFiles(inputPath.Text, "*");
+        //    var indexList = new IndexList().GetList();
+        //var repository = new Repository().GetFiles(inputPath.Text, "*");
 
-            var renamer = new Renamer(LocalFiles.LocalFileList);
+        //    var renamer = new Renamer(repository);
 
-            //  var files = renamer.PreviewChanges(indexList);
-            var files = renamer.PreviewChanges(indexList);
+        //    //  var files = renamer.PreviewChanges(indexList);
+        //    var files = renamer.PreviewChanges(indexList);
 
-            previewList.DisplayMember = "Value";
-            previewList.DataSource = files.ToList();
+        //    previewList.DisplayMember = "Value";
+        //    previewList.DataSource = files.ToList();
         }
 
         private void selectFolder_Click(object sender, EventArgs e)
@@ -81,28 +81,28 @@ namespace PlexRename.Win
 
            
 
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-            {
-                inputPath.Text = folderBrowserDialog1.SelectedPath;
-            }
+         //   if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+         //   {
+         //       inputPath.Text = folderBrowserDialog1.SelectedPath;
+         //   }
 
-            //var result = facade.GetFilePaths(inputPath.Text, dict);
-            // fileList.DataSource = result.ToList();
-
-
-            var repository = new Repository().GetFiles(inputPath.Text, "*");
-            LocalFiles.LocalFileList = repository;
-            var files = LocalFiles.LocalFileList;
-
-         //  var renamer = new Renamer(repository);
-
-          //  var files = renamer.PreviewChanges(indexList);
-           // var files = repository.Display();
-            // .WithNewIndexPattern();
+         //   //var result = facade.GetFilePaths(inputPath.Text, dict);
+         //   // fileList.DataSource = result.ToList();
 
 
-            fileList.DisplayMember = "FilePath";
-            fileList.DataSource = files.ToList();
+         //   var repository = new Repository().GetFiles(inputPath.Text, "*");
+         //   LocalFiles.LocalFileList = repository;
+         //   var files = LocalFiles.LocalFileList;
+
+         ////  var renamer = new Renamer(repository);
+
+         // //  var files = renamer.PreviewChanges(indexList);
+         //  // var files = repository.Display();
+         //   // .WithNewIndexPattern();
+
+
+         //   fileList.DisplayMember = "FilePath";
+         //   fileList.DataSource = files.ToList();
 
 
         }

@@ -6,30 +6,48 @@ using System.Threading.Tasks;
 
 namespace PlexRename.BL
 {
-    public static class IndexList
+    public class IndexList
     {
 
 
-        public static List<IndexItem> Indexes = new List<IndexItem>();
+       // public List<IndexItem> Indexes = new List<IndexItem>();
+
+        private List<IndexItem> _indexList;
 
 
-        
 
-        public static void Display()
+        public IndexList(int startYear, int endYear, int startInteger, int endInteger)
         {
+            _indexList = new List<IndexItem>();
+            this.GenerateIndexesForIntegers(startInteger, endInteger);
+            this.GenerateIndexesForYears(startYear, endYear, startInteger, endInteger);
 
-            foreach (var item in Indexes)
-            {
-                Console.WriteLine("{0} {1} {2} {3}",
-                    item.OriginalIndex,
-                    item.SeasonNumber,
-                    item.ReplaceWithIndex);
+        }
 
-            }
+        public List<IndexItem> GetIndexes()
+        {
+            return this._indexList;
 
 
 
         }
+
+
+        //public void Display()
+        //{
+
+        //    foreach (var item in Indexes)
+        //    {
+        //        Console.WriteLine("{0} {1} {2} {3}",
+        //            item.OriginalIndex,
+        //            item.SeasonNumber,
+        //            item.ReplaceWithIndex);
+
+        //    }
+
+
+
+        //}
 
         /*	
                 public IEnumerable<string> GetKeys()
@@ -42,20 +60,20 @@ namespace PlexRename.BL
         */
 
 
-        public static List<IndexItem> GenerateIndexList(int startYear, int endYear, int startInteger, int endInteger)
-        {
+        //public List<IndexItem> GenerateIndexList(int startYear, int endYear, int startInteger, int endInteger)
+        //{
 
-            GenerateIndexesForIntegers(startInteger, endInteger);
-            GenerateIndexesForYears(startYear, endYear, startInteger, endInteger);
-
-
-            return Indexes;
-        }
+        //    GenerateIndexesForIntegers(startInteger, endInteger);
+        //    GenerateIndexesForYears(startYear, endYear, startInteger, endInteger);
 
 
+        //    return Indexes;
+        //}
 
 
-        private static void GenerateIndexesForIntegers(int startInteger, int endInteger)
+
+
+        private void GenerateIndexesForIntegers(int startInteger, int endInteger)
         {
 
             for (int x = startInteger; x < endInteger; x++)
@@ -68,7 +86,8 @@ namespace PlexRename.BL
                     indexItem.OriginalIndex = y.ToString("D2") + "x" + x.ToString("D2");
                     indexItem.ReplaceWithIndex = "S" + y.ToString("D2") + "E" + x.ToString("D2");
 
-                    Indexes.Add(indexItem);
+                   // this._indexList.Add(indexItem);
+                    _indexList.Add(indexItem);
                 }
 
 
@@ -82,7 +101,7 @@ namespace PlexRename.BL
 
 
 
-        private static void GenerateIndexesForYears(int startYear, int endYear, int startInteger, int endInteger)
+        private void GenerateIndexesForYears(int startYear, int endYear, int startInteger, int endInteger)
         {
 
             for (int x = startInteger; x < endInteger; x++)
@@ -95,7 +114,8 @@ namespace PlexRename.BL
                     indexItem.OriginalIndex = y.ToString("D2") + "x" + x.ToString("D2");
                     indexItem.ReplaceWithIndex = "S" + y.ToString("D2") + "E" + x.ToString("D2");
 
-                    Indexes.Add(indexItem);
+                  //  Indexes.Add(indexItem);
+                    _indexList.Add(indexItem);
                 }
 
 
@@ -106,11 +126,11 @@ namespace PlexRename.BL
 
         }
 
-        public static List<IndexItem> GetList()
-        {
-            return Indexes;
+        //public List<IndexItem> GetList()
+        //{
+        //    return Indexes;
 
-        }
+        //}
 
 
         

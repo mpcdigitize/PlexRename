@@ -9,37 +9,14 @@ namespace PlexRename.BL
 {
     public class Renamer
     {
-        private List<string> _list;
+      
         private IEnumerable<KeyValuePair<string, string>> _kvp;
 
-        public Renamer(IEnumerable<string> list)
+        public IEnumerable<KeyValuePair<string, string>> PreviewChanges(IEnumerable<string> list,List<IndexItem> indexList)
         {
-            this._list = list.ToList();
 
-        }
-
-
-        public IEnumerable<string> DisplayPaths()
-        {
-            return this._list;
-
-        }
-
-
-        //public IEnumerable<KeyValuePair<string, string>> PreviewChanges(List<IndexItem> indexList)
-        //{
-        //    _kvp = this._list.PathIncludes(@"\Season")
-        //                .PathExcludes(@"\metadata")
-        //                .PathContainsIndex(indexList)
-        //                .WithNewIndexPattern();
-
-        //    return _kvp;
-        //}
-
-
-        public IEnumerable<KeyValuePair<string, string>> PreviewChanges(List<IndexItem> indexList)
-        {
-            _kvp = this._list.PathIncludes(@"\Season")
+           
+            _kvp = list.PathIncludes(@"\Season")
                         .PathExclude(@"\metadata")
                         .PathContainsIndex(indexList)
                         .WithNewIndexPattern();
