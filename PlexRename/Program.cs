@@ -19,12 +19,16 @@ namespace PlexRename.BL
 
             ApplicationServiceLayer service = new ApplicationServiceLayer();
 
+            //service.PopulateList(path);
+
             var files = service.PopulateList(path);
+            var result = service.ShowPreview();
+           
 
             //var indexList =  new IndexList().GenerateIndexList(0, 0, 0, 50);
 
             //var repository = new Repository().GetFiles(path,"*");
-            
+
             //var renamer = new Renamer(repository);
 
             //var files = renamer.PreviewChanges(indexList);
@@ -52,21 +56,24 @@ namespace PlexRename.BL
             //    var r3 = res.FilesToProcess().Preview();
             ////    res.FilesToProcess().RenameFiles();
 
-            //foreach (var file in files)
-            //{
+            foreach (var file in files)
+            {
 
-            //    Console.WriteLine(file.Value);
-
-
-            //}
-
-            //foreach (var file in result)
-            //{
-
-            //    Console.WriteLine(file.Value);
+                Console.WriteLine("Load :" + file);
 
 
-            //}
+            }
+
+            foreach (var file in result)
+            {
+
+                Console.WriteLine("Preview :" +file.Value);
+
+
+            }
+
+            service.SaveOriginalPaths();
+            service.RestoreOriginalPath();
 
             //foreach (var file in allfiles)
             //{

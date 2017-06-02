@@ -9,10 +9,10 @@ namespace PlexRename
 {
     public class ApplicationServiceLayer
     {
-        public MementoCaretaker mementoCaretaker = new MementoCaretaker();
-        public IndexList indexList = new IndexList(0, 0, 0, 50);
-        public Repository repository = new Repository();
-        public Renamer renamer = new Renamer();
+        private MementoCaretaker mementoCaretaker = new MementoCaretaker();
+        private IndexList indexList = new IndexList(0, 0, 0, 50);
+        private Repository repository = new Repository();
+        private Renamer renamer = new Renamer();
 
         public IEnumerable<string> PopulateList(string path)
         {
