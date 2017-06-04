@@ -1,6 +1,7 @@
 ﻿using PlexRename.BL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace PlexRename
     public class ApplicationServiceLayer
     {
         private MementoCaretaker mementoCaretaker = new MementoCaretaker();
-        private IndexList indexList = new IndexList(0, 0, 0, 50);
+        private IndexList indexList = new IndexList(2016, 2016, 0, 50);
         private Repository repository = new Repository();
         private Renamer renamer = new Renamer();
 
@@ -22,11 +23,7 @@ namespace PlexRename
 
             return dbList;
 
-            //foreach (var item in dbList)
-            //{
-            //    Console.WriteLine("Populate: " + item);
-
-            //}
+            
 
 
         }
@@ -41,12 +38,24 @@ namespace PlexRename
 
             return list;
 
-            //foreach (var item in list)
-            //{
-            //    //Console.WriteLine(list.Count());
-            //    Console.WriteLine("PreviewChanges :" + item.Key + " = " + item.Value);
+        
 
-            //}
+        }
+
+        public void SaveChanges()
+        {
+           var list = renamer.GetKeyValuePair();
+
+            foreach (var item in list)
+            {
+                if (File.Exists(item.Key))
+                    {
+
+                        File.Move(item.Key, item.Value);
+                    };
+                
+    
+            }
 
         }
 
@@ -58,11 +67,11 @@ namespace PlexRename
 
             var list = mementoCaretaker.Memento;
 
-            foreach (var item in list.KVP)
-            {
-                Console.WriteLine("Memento :" + item.Key + " = " + item.Value);
+            //foreach (var item in list.KVP)
+            //{
+            //    Console.WriteLine("Memento :" + item.Key + " = " + item.Value);
 
-            }
+            //}
 
         }
 
@@ -75,9 +84,18 @@ namespace PlexRename
 
             foreach (var item in list)
             {
-                Console.WriteLine("Restore: " + item.Key + " = " + item.Value);
+                if (File.Exists(item.Key))
+                {
+
+                    File.Move(item.Key, item.Value);
+                };
 
             }
+            //foreach (var item in list)
+            //{
+            //    Console.WriteLine("Restore: " + item.Key + " = " + item.Value);
+
+            //}
         }
 
 

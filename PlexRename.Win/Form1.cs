@@ -14,97 +14,74 @@ namespace PlexRename.Win
 {
     public partial class Form1 : Form
     {
-      //  Dictionary<string, IndexItem> dict = new IndexDictionary().GenerateKeyValuePairs(1980, 2016, 0, 50);
+
+        ApplicationServiceLayer _service;
 
         public Form1()
         {
             
             InitializeComponent();
+           _service = new ApplicationServiceLayer();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // string path = @"\\TOWER\Media\Video\TV\Colony";
-           // IndexList.GenerateIndexList(0, 0, 0, 50);
-
-
-
-            // var repository = new Repository();
-            // var files = repository.ScanFolder(path, "*");
-
-            // //  var tt = path.ContainsEpisodeIndex();
-
-
-            // var list = files.PathContains(@"\Season").GetFilesWithIndex(dict);
-            //var list2 = list.GetIndexFromFile();
-
-            // var localFiles = new LocalFiles(list2);
-
-            // var res = localFiles.PopulateMediaItem(dict);
-
-            // //var r2 = res.Preview ();
-            // var r3 = res.FilesToProcess().Preview();
-            // res.FilesToProcess().RenameFiles();
-
-            // fileList.DataSource = list.ToList();
-
-
-            //foreach (var file in r3)
-            //{
-
-            //    Console.WriteLine(file);
-
-
-            //}
-
+            this.Text = "PlexRename";
 
         }
 
         private void Preview_Click(object sender, EventArgs e)
         {
 
-        //    var indexList = new IndexList().GetList();
-        //var repository = new Repository().GetFiles(inputPath.Text, "*");
 
-        //    var renamer = new Renamer(repository);
+           var files = _service.ShowPreview();
 
-        //    //  var files = renamer.PreviewChanges(indexList);
-        //    var files = renamer.PreviewChanges(indexList);
-
-        //    previewList.DisplayMember = "Value";
-        //    previewList.DataSource = files.ToList();
+           previewList.DisplayMember = "Value";
+           previewList.DataSource = files.ToList();
         }
+
+
+       
+
+
 
         private void selectFolder_Click(object sender, EventArgs e)
         {
-            //var facade = new Facade();
+           
+
+
+
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                inputPath.Text = folderBrowserDialog1.SelectedPath;
+            }
+
+            var files = _service.PopulateList(inputPath.Text);
 
            
 
-         //   if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-         //   {
-         //       inputPath.Text = folderBrowserDialog1.SelectedPath;
-         //   }
-
-         //   //var result = facade.GetFilePaths(inputPath.Text, dict);
-         //   // fileList.DataSource = result.ToList();
+            fileList.DisplayMember = "FilePath";
+            fileList.DataSource = files.ToList();
 
 
-         //   var repository = new Repository().GetFiles(inputPath.Text, "*");
-         //   LocalFiles.LocalFileList = repository;
-         //   var files = LocalFiles.LocalFileList;
+        }
 
-         ////  var renamer = new Renamer(repository);
+       
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _service.RestoreOriginalPath();
 
-         // //  var files = renamer.PreviewChanges(indexList);
-         //  // var files = repository.Display();
-         //   // .WithNewIndexPattern();
+            MessageBox.Show("Job Completed");
+        }
 
+        private void saveChanges_Click(object sender, EventArgs e)
+        {
+            _service.SaveOriginalPaths();
+            _service.SaveChanges();
 
-         //   fileList.DisplayMember = "FilePath";
-         //   fileList.DataSource = files.ToList();
+            previewList.DataSource = null;
 
-
+            MessageBox.Show("Job Completed");
         }
     }
 }

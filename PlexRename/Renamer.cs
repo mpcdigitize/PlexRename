@@ -40,5 +40,12 @@ namespace PlexRename.BL
         }
 
 
+        public IEnumerable<KeyValuePair<string, string>> GetKeyValuePair()
+        {
+
+            return this._kvp;
+        }
+
+
     }
 }
