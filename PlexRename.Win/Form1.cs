@@ -83,5 +83,23 @@ namespace PlexRename.Win
 
             MessageBox.Show("Job Completed");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var files = _service.ShowCleanMeta();
+
+            //previewList.DisplayMember = "Value";
+            previewList.DataSource = files.ToList();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // _service.SaveOriginalPaths();
+            _service.RunCleanUp();
+
+            previewList.DataSource = null;
+
+            MessageBox.Show("Job Completed");
+        }
     }
 }

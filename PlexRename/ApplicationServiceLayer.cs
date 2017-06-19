@@ -11,9 +11,10 @@ namespace PlexRename
     public class ApplicationServiceLayer
     {
         private MementoCaretaker mementoCaretaker = new MementoCaretaker();
-        private IndexList indexList = new IndexList(2016, 2016, 0, 50);
+        private IndexList indexList = new IndexList(2015, 2016, 1, 50);
         private Repository repository = new Repository();
         private Renamer renamer = new Renamer();
+        private CleanUp cleanUp = new CleanUp(); 
 
         public IEnumerable<string> PopulateList(string path)
         {
@@ -42,6 +43,34 @@ namespace PlexRename
 
         }
 
+
+
+
+        public IEnumerable<string> ShowCleanMeta()
+        {
+            var dbList = repository.GetPathList();
+            var list = cleanUp.PreviewCleanUp(dbList);
+
+            return list;
+        }
+
+
+        public void RunCleanUp ()
+        {
+            var list = cleanUp.GetList();
+
+            foreach (var file in list)
+            {
+                if (File.Exists(file))
+                {
+
+                    File.Delete(file);
+                }
+            }
+
+        }
+
+
         public void SaveChanges()
         {
            var list = renamer.GetKeyValuePair();
@@ -51,7 +80,7 @@ namespace PlexRename
                 if (File.Exists(item.Key))
                     {
 
-                        File.Move(item.Key, item.Value);
+                        File.Move(@""+ item.Key, @""+ item.Value);
                     };
                 
     

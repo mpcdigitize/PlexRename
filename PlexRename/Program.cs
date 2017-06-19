@@ -14,7 +14,7 @@ namespace PlexRename.BL
         static void Main(string[] args)
         {
 
-            string path =@"\\TOWER\Media\Video\TV\Colony";
+            string path =@"\\TOWER\Media\Video\TV\Boardwalk Empire";
 
 
             ApplicationServiceLayer service = new ApplicationServiceLayer();
@@ -22,8 +22,8 @@ namespace PlexRename.BL
             //service.PopulateList(path);
 
             var files = service.PopulateList(path);
-            var result = service.ShowPreview();
-           
+            //var result = service.ShowPreview();
+            var result = service.ShowCleanMeta();
 
             //var indexList =  new IndexList().GenerateIndexList(0, 0, 0, 50);
 
@@ -67,13 +67,13 @@ namespace PlexRename.BL
             foreach (var file in result)
             {
 
-                Console.WriteLine("Preview :" +file.Value);
+                Console.WriteLine("Preview :" +file);
 
 
             }
 
-            service.SaveOriginalPaths();
-            service.RestoreOriginalPath();
+          //  service.SaveOriginalPaths();
+            //service.RestoreOriginalPath();
 
             //foreach (var file in allfiles)
             //{
