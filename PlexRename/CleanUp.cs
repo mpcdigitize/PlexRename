@@ -16,7 +16,7 @@ namespace PlexRename
         {
 
 
-            this._list = list.PathIncludes(@"\metadata");
+            this._list = list.PathIncludes(@"season5");
 
             return this._list;
           
